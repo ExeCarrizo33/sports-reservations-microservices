@@ -7,11 +7,11 @@
         <artifactId>sports-reservations</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <groupId>com.backend.sportreservation-gateway</groupId>
-    <artifactId>api-gateway</artifactId>
+    <groupId>com.backend.eureka-server</groupId>
+    <artifactId>eureka-server</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>api-gateway</name>
-    <description>api-gateway</description>
+    <name>eureka-server</name>
+    <description>eureka-server</description>
     <url/>
     <licenses>
         <license/>
@@ -40,11 +40,7 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-gateway-mvc</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
         </dependency>
 
         <dependency>
