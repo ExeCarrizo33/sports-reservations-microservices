@@ -3,9 +3,6 @@ server:
 spring:
   application:
     name: config-server
-  config:
-    activate:
-      on-profile: git
   cloud:
     config:
       server:
@@ -13,3 +10,4 @@ spring:
           uri: https://github.com/ExeCarrizo33/config-repository
           clone-on-start: true
           default-label: master
+        bootstrap: true
