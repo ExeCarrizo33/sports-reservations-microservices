@@ -1,12 +1,21 @@
 services:
   eureka-server:
-    build: ./eureka-server
+    container_name: eureka-server
+    build:
+      context: ./eureka-server
+      dockerfile: Dockerfile
     ports:
       - "8761:8761"
     networks:
       - microservices-network
+    environment:
+      - EUREKA_INSTANCE_HOSTNAME=eureka-server
+      - EUREKA_CLIENT_REGISTERWITH_EUREKA=false
+      - EUREKA_CLIENT_FETCH_REGISTRY=false
+
 
   config-server:
+    container_name: config-server
     build: ./config-server
     ports:
       - "8888:8888"
@@ -14,12 +23,14 @@ services:
       - microservices-network
     environment:
       - SPRING_PROFILES_ACTIVE=git
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
     depends_on:
       - eureka-server
 
 
 
   api-gateway:
+    container_name: api-gateway
     build: ./api-gateway
     ports:
       - "8080:8080"
@@ -28,6 +39,9 @@ services:
     depends_on:
       - eureka-server
       - config-server
+    environment:
+      - EUREKA_SERVER_URL=http://eureka-server:8761/eureka/
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
 
 networks:
   microservices-network:
